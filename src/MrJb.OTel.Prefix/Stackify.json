@@ -1,3 +1,4 @@
 {
-  "AppName": "MrJB.Otel.Prefix"
+  "AppName": "MrJB.Otel.Prefix",
+  "Environment": "Dev"
 }
