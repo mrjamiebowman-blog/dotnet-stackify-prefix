@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F34A3306-28CE-49E2-9F9C-EADED1FCEAC1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{613EEB0F-7EA5-4116-B9CB-088C21060022}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJb.OTel.Prefix", "src\MrJb.OTel.Prefix\MrJb.OTel.Prefix.csproj", "{3ECEE779-9DA5-4388-95A5-F7C1423BC68A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ECEE779-9DA5-4388-95A5-F7C1423BC68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECEE779-9DA5-4388-95A5-F7C1423BC68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECEE779-9DA5-4388-95A5-F7C1423BC68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECEE779-9DA5-4388-95A5-F7C1423BC68A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3ECEE779-9DA5-4388-95A5-F7C1423BC68A} = {613EEB0F-7EA5-4116-B9CB-088C21060022}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53F8A8DA-17AF-459A-8CFA-43DB51AB60B1}
+	EndGlobalSection
+EndGlobal
