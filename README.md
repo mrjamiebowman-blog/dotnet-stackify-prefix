@@ -1,2 +1,2 @@
-# dotnet-stackify-prefix
-Stackify Prefix
+# .NET: Stackify OTel Prefix
+Stackify OTel Prefix
