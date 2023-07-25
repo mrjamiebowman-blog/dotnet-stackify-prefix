@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MrJB.OTel.Prefix.OTel\MrJB.OTel.Prefix.OTel.csproj" />
   </ItemGroup>
 
