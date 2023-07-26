@@ -1,4 +1,4 @@
-namespace MrJb.OTel.Prefix;
+namespace MrJB.OTel.Prefix.Data.Models;
 
 public class WeatherForecast
 {
