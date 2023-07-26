@@ -1,5 +1,14 @@
 using MrJB.OTel.Prefix.Data;
+using MrJB.OTel.Prefix.OTel;
+using OpenTelemetry;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+
+var resource = ResourceBuilder
+    .CreateDefault()
+    .AddService(OTel.ServiceName)
+    .AddTelemetrySdk()
+    .AddEnvironmentVariableDetector();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // open telemetry
-builder.Services.AddSingleton(TracerProvider.Default.GetTracer(OTelConstants.ServiceName));
+builder.Services.AddSingleton(TracerProvider.Default.GetTracer(OTel.ServiceName));
 
 // data service
 builder.Services.AddCustomDataService();
@@ -29,4 +38,28 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+// service provider
+var serviceProvider = builder.Services.BuildServiceProvider();
+
+// open telemetry
+using (var provider = Sdk.CreateTracerProviderBuilder()
+           .AddAppTracing(serviceProvider)
+           .Build())
+{
+    using (OTel.Application.StartActivity("Seed Db"))
+    {
+        try
+        {
+            // seed db
+        }
+        catch (Exception e)
+        {
+            //logger.LogError(e, "While ensuring the postgres db");
+            throw;
+        }
+    };
+
+    app.Run();
+
+    provider?.ForceFlush();
+}
