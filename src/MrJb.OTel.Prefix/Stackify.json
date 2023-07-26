@@ -1,4 +1,21 @@
 {
   "AppName": "MrJB.Otel.Prefix",
-  "Environment": "Dev"
+  "DisableTracing": true,
+  "EnableDebug": true,
+  "Instrumentation": [
+    {
+      "Assembly": "MrJb.OTel.Prefix",
+      "Class": "Samples.Services.BlogPosterServices.*",
+      "Method": "DoWorkAsync",
+      "StartTrace": true,
+      "OperationName": "{{ClassName}} Post Blog"
+    },
+    {
+      "Assembly": "MrJb.OTel.Prefix",
+      "Class": "Samples.Services.BlogConsumerServices.*",
+      "Method": "Handler",
+      "StartTrace": true,
+      "OperationName": "{{ClassName}} Consume Blog"
+    }
+  ]
 }

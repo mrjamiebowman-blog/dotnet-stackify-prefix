@@ -29,7 +29,7 @@ public class WeatherForecastController : ControllerBase
     public IEnumerable<WeatherForecast> Get()
     {
         using var scope = _tracer.StartActiveSpan("WeatherForecastController.Get");
-        
+
         // Your logic here
         var data = Enumerable.Range(1, 5).Select(index => new WeatherForecast {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
