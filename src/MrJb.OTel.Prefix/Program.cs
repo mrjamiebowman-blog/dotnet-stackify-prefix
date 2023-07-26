@@ -3,12 +3,17 @@ using MrJB.OTel.Prefix.OTel;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 
 var resource = ResourceBuilder
     .CreateDefault()
     .AddService(OTel.ServiceName)
     .AddTelemetrySdk()
     .AddEnvironmentVariableDetector();
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.OpenTelemetry()
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,10 +56,11 @@ using (var provider = Sdk.CreateTracerProviderBuilder()
         try
         {
             // seed db
+            Log.Information("Seed Db");
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            //logger.LogError(e, "While ensuring the postgres db");
+            Log.Error(ex, "Failed to Seed Db");
             throw;
         }
     };
