@@ -35,6 +35,8 @@ public class WeatherForecastController : ControllerBase
         // data
         var data = await _dataService.GetDataAsync();
 
+        _logger.LogInformation($"WeatherForecastController->Get()");
+
         // end telemetry
         scope.End();
 

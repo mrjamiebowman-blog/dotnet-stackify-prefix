@@ -11,11 +11,17 @@ var resource = ResourceBuilder
     .AddTelemetrySdk()
     .AddEnvironmentVariableDetector();
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.OpenTelemetry()
+// logging
+using var log = new LoggerConfiguration()
+    .WriteTo.OpenTelemetry() // open telemetry
+    .WriteTo.Console() // serilog
     .CreateLogger();
+Log.Logger = log;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// logging
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
