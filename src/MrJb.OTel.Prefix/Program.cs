@@ -4,6 +4,7 @@ using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
+using System.Diagnostics;
 
 var resource = ResourceBuilder
     .CreateDefault()
@@ -11,17 +12,29 @@ var resource = ResourceBuilder
     .AddTelemetrySdk()
     .AddEnvironmentVariableDetector();
 
+// stackify
+StackifyLib.Utils.StackifyAPILogger.LogEnabled = true;
+StackifyLib.Utils.StackifyAPILogger.OnLogMessage += StackifyAPILogger_OnLogMessage;
+
+static void StackifyAPILogger_OnLogMessage(string data)
+{
+    Debug.WriteLine(data);
+}
+
 // logging
 using var log = new LoggerConfiguration()
     .WriteTo.OpenTelemetry() // open telemetry
     .WriteTo.Console() // serilog
+    //.WriteTo.Stackify() // stackify (Serilog Sink)
     .CreateLogger();
 Log.Logger = log;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // logging
-builder.Host.UseSerilog();
+builder.Host.UseSerilog((ctx, lc) =>
+{
+});
 
 // Add services to the container.
 builder.Services.AddControllers();
